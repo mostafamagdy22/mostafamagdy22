@@ -1,37 +1,3 @@
-name: Generate snake animation
-
-on:
-  schedule: # execute every 12 hours
-    - cron: "* */12 * * *"
-
-  workflow_dispatch:
-
-  push:
-    branches:
-    - main
-
-jobs:
-  generate:
-    permissions:
-      contents: write
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
-
-    steps:
-      - name: generate snake.svg
-        uses: Platane/snk/svg-only@v3
-        with:
-          github_user_name: ${{ github.repository_owner }}
-          outputs: dist/snake.svg?palette=github-dark
-
-
-      - name: push snake.svg to the output branch
-        uses: crazy-max/ghaction-github-pages@v3.1.0
-        with:
-          target_branch: output
-          build_dir: dist
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 <h1 align="center">Hey 👋 Mostafa Magdy with u</h1>
 
 ###
@@ -81,9 +47,3 @@ jobs:
   <img src="https://streak-stats.demolab.com?user=mostafamagdy22&locale=en&mode=daily&theme=dracula&hide_border=false&border_radius=5&order=3" height="150" alt="streak graph"  />
   <img src="https://github-profile-trophy.vercel.app?username=mostafamagdy22&theme=dracula&column=-1&row=1&margin-w=8&margin-h=8&no-bg=false&no-frame=false&order=4" height="150" alt="trophy graph"  />
 </div>
-
-###
-
-<img src="https://raw.githubusercontent.com/mostafamagdy22/mostafamagdy22/output/snake.svg" alt="Snake animation" />
-
-###
